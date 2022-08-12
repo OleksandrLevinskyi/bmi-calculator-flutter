@@ -8,9 +8,9 @@ import 'package:flutter/material.dart';
 class ResultsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final Calculator calculator =
-        (ModalRoute.of(context).settings.arguments as ResultsPageArgs)
-            .calculator;
+    final ResultsPageArgs args =
+        ModalRoute.of(context).settings.arguments as ResultsPageArgs;
+    final Calculator calculator = args.calculator;
 
     return Scaffold(
       appBar: AppBar(
@@ -40,7 +40,9 @@ class ResultsPage extends StatelessWidget {
                 children: [
                   Text(
                     calculator.getResultLabel(),
-                    style: kResultTextStyle,
+                    style: kResultTextStyle.copyWith(
+                      color: calculator.getResultLabelColor(),
+                    ),
                   ),
                   Text(
                     calculator.getBMI(),

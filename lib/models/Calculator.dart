@@ -1,15 +1,10 @@
 import 'dart:math';
+import 'package:flutter/material.dart';
 
 class Calculator {
-  int height;
-  int weight;
-
   double _bmi;
 
   Calculator(height, weight) {
-    this.height = height;
-    this.weight = weight;
-
     _bmi = weight / pow(height / 100, 2);
   }
 
@@ -27,6 +22,18 @@ class Calculator {
     }
 
     return 'Underweight';
+  }
+
+  Color getResultLabelColor() {
+    if (_bmi >= 25.0) {
+      return Color(0xFFD82424);
+    }
+
+    if (_bmi > 18.5) {
+      return Color(0xFF24D876);
+    }
+
+    return Color(0xFF247ED8);
   }
 
   String getResultAnalysis() {
