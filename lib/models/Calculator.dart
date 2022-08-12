@@ -13,6 +13,14 @@ class Calculator {
     calculateBMI();
   }
 
+  String getBMI() => _bmi.toStringAsFixed(1);
+
+  String getResultLabel() => _resultLabel;
+
+  Color getResultLabelColor() => _resultLabelColor;
+
+  String getResultAnalysis() => _resultAnalysis;
+
   void calculateBMI() {
     if (_bmi >= 25.0) {
       _resultLabel = 'Overweight';
@@ -28,12 +36,4 @@ class Calculator {
       _resultAnalysis = 'Increase food consumption!';
     }
   }
-
-  String getBMI() => _bmi.toStringAsFixed(1);
-
-  String getResultLabel() => _resultLabel;
-
-  Color getResultLabelColor() => _resultLabelColor;
-
-  String getResultAnalysis() => _resultAnalysis;
 }
