@@ -1,3 +1,5 @@
+import 'package:bmi_calculator/models/Calculator.dart';
+import 'package:bmi_calculator/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../constants.dart';
@@ -15,8 +17,8 @@ class InputPage extends StatefulWidget {
 
 class _InputPageState extends State<InputPage> {
   Gender selectedGender = Gender.male;
-  int weight = 60;
-  int age = 18;
+  int selectedWeight = 60;
+  int selectedAge = 18;
   int selectedHeight = 180;
 
   void updateGender(Gender gender) {
@@ -131,7 +133,7 @@ class _InputPageState extends State<InputPage> {
                           style: kLabelTextStyle,
                         ),
                         Text(
-                          weight.toString(),
+                          selectedWeight.toString(),
                           style: kNumberTextStyle,
                         ),
                         Row(
@@ -141,8 +143,8 @@ class _InputPageState extends State<InputPage> {
                               iconData: FontAwesomeIcons.minus,
                               onPressed: () {
                                 setState(() {
-                                  if (weight > 1) {
-                                    weight--;
+                                  if (selectedWeight > 1) {
+                                    selectedWeight--;
                                   }
                                 });
                               },
@@ -154,7 +156,7 @@ class _InputPageState extends State<InputPage> {
                               iconData: FontAwesomeIcons.plus,
                               onPressed: () {
                                 setState(() {
-                                  weight++;
+                                  selectedWeight++;
                                 });
                               },
                             ),
@@ -174,7 +176,7 @@ class _InputPageState extends State<InputPage> {
                           style: kLabelTextStyle,
                         ),
                         Text(
-                          age.toString(),
+                          selectedAge.toString(),
                           style: kNumberTextStyle,
                         ),
                         Row(
@@ -184,8 +186,8 @@ class _InputPageState extends State<InputPage> {
                               iconData: FontAwesomeIcons.minus,
                               onPressed: () {
                                 setState(() {
-                                  if (age > 1) {
-                                    age--;
+                                  if (selectedAge > 1) {
+                                    selectedAge--;
                                   }
                                 });
                               },
@@ -197,7 +199,7 @@ class _InputPageState extends State<InputPage> {
                               iconData: FontAwesomeIcons.plus,
                               onPressed: () {
                                 setState(() {
-                                  age++;
+                                  selectedAge++;
                                 });
                               },
                             ),
@@ -211,7 +213,16 @@ class _InputPageState extends State<InputPage> {
             ),
           ),
           BottomButton(
-            onTap: () => Navigator.pushNamed(context, '/results'),
+            onTap: () {
+              Calculator calculator =
+                  Calculator(selectedHeight, selectedWeight);
+
+              Navigator.pushNamed(
+                context,
+                '/results',
+                arguments: ResultsPageArgs(calculator),
+              );
+            },
             buttonTitle: 'CALCULATE',
           ),
         ],
