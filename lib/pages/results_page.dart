@@ -1,4 +1,5 @@
 import 'package:bmi_calculator/constants.dart';
+import 'package:bmi_calculator/widgets/bottom_button.dart';
 import 'package:bmi_calculator/widgets/reusable_card.dart';
 import 'package:flutter/material.dart';
 
@@ -40,6 +41,10 @@ class ResultsPage extends StatelessWidget {
                   Text(
                     'Your BMI result is good',
                     style: kBodyTextStyle,
+                  ),
+                  BottomButton(
+                    onTap: () => Navigator.pop(context),
+                    buttonTitle: 'RE-CALCULATE',
                   ),
                 ],
               ),
