@@ -2,49 +2,38 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 
 class Calculator {
+  String _resultLabel;
+  String _resultAnalysis;
+  Color _resultLabelColor;
   double _bmi;
 
   Calculator(height, weight) {
     _bmi = weight / pow(height / 100, 2);
+
+    calculateBMI();
   }
 
-  String getBMI() {
-    return _bmi.toStringAsFixed(1);
-  }
-
-  String getResultLabel() {
+  void calculateBMI() {
     if (_bmi >= 25.0) {
-      return 'Overweight';
+      _resultLabel = 'Overweight';
+      _resultLabelColor = Color(0xFFD82424);
+      _resultAnalysis = 'Work out more!';
+    } else if (_bmi > 18.5) {
+      _resultLabel = 'Normal';
+      _resultLabelColor = Color(0xFF24D876);
+      _resultAnalysis = 'Good job!';
+    } else {
+      _resultLabel = 'Underweight';
+      _resultLabelColor = Color(0xFF247ED8);
+      _resultAnalysis = 'Increase food consumption!';
     }
-
-    if (_bmi > 18.5) {
-      return 'Normal';
-    }
-
-    return 'Underweight';
   }
 
-  Color getResultLabelColor() {
-    if (_bmi >= 25.0) {
-      return Color(0xFFD82424);
-    }
+  String getBMI() => _bmi.toStringAsFixed(1);
 
-    if (_bmi > 18.5) {
-      return Color(0xFF24D876);
-    }
+  String getResultLabel() => _resultLabel;
 
-    return Color(0xFF247ED8);
-  }
+  Color getResultLabelColor() => _resultLabelColor;
 
-  String getResultAnalysis() {
-    if (_bmi >= 25) {
-      return 'Work out more!';
-    }
-
-    if (_bmi > 18.5) {
-      return 'Good job!';
-    }
-
-    return 'Increase food consumption!';
-  }
+  String getResultAnalysis() => _resultAnalysis;
 }
